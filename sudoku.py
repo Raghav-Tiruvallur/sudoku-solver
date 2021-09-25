@@ -13,7 +13,6 @@ board = [
 
 def solveBoard(board):
     checkIfEmpty=findEmptySpots(board)
-    displayBoard(board)
     if checkIfEmpty is None:
         return True
     else:
@@ -63,6 +62,6 @@ def findEmptySpots(board):
                 return (i,j)
     return None
 
-
+displayBoard(board)
 solveBoard(board)
 displayBoard(board)
