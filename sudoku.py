@@ -10,6 +10,35 @@ board = [
     [0,4,9,2,0,6,0,0,7]
 ]
 
+
+def isValid(board,value,position):
+    row,col=position
+    for i in range(len(board[0])):
+        if board[row][i]==value and i!=row:
+            return False
+    for j in range(len(board)):
+        if board[j][col]==value and j!=col:
+            return False
+    #Find if value exists in my box
+    bx=row//3
+    by=col//3
+    for i in range(len(by*3,by*3+3)):
+        for j in range(len(bx*3,bx*3+3)):
+            if board[i][j]==value and (i,j)!=position:
+                return False
+    return True 
+
+
+
+
+
+
+
+
+
+
+
+
 def displayBoard(board):
     for i in range(len(board)):
         if i%3==0 and i!=0:
