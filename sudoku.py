@@ -11,6 +11,22 @@ board = [
 ]
 
 
+def solveBoard(board):
+    checkIfEmpty=findEmptySpots(board)
+    displayBoard(board)
+    if checkIfEmpty is None:
+        return True
+    else:
+        row,col=checkIfEmpty
+        for i in range(1,10):
+            if isValid(board,i,checkIfEmpty):
+                board[row][col]=i
+                if solveBoard(board):
+                    return True
+            board[row][col]=0
+    return False
+
+
 def isValid(board,value,position):
     row,col=position
     for i in range(len(board[0])):
@@ -20,24 +36,13 @@ def isValid(board,value,position):
         if board[j][col]==value and j!=col:
             return False
     #Find if value exists in my box
-    bx=row//3
-    by=col//3
-    for i in range(len(by*3,by*3+3)):
-        for j in range(len(bx*3,bx*3+3)):
+    bx=col//3
+    by=row//3
+    for i in range(by*3,by*3+3):
+        for j in range(bx*3,bx*3+3):
             if board[i][j]==value and (i,j)!=position:
                 return False
     return True 
-
-
-
-
-
-
-
-
-
-
-
 
 def displayBoard(board):
     for i in range(len(board)):
@@ -57,3 +62,7 @@ def findEmptySpots(board):
             if board[i][j]==0:
                 return (i,j)
     return None
+
+
+solveBoard(board)
+displayBoard(board)
